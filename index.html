@@ -501,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const audios = [];
 
   cards.forEach((card, i) => {
-    const audio   = new Audio(TRACKS[i].src);
+    const audio   = new Audio(TRACKS[Number(card.dataset.index)].src);
     audio.volume  = 1;
     audios.push(audio);
 
