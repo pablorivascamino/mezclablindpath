@@ -290,8 +290,22 @@
       text-transform: uppercase;
       opacity: 0.5;
     }
+	#yt-overlay {
+	  position: fixed;
+	  inset: 0;
+	  background: black;
+	  z-index: 9999;
+	  display: none;
+	}
+
+	#yt-overlay iframe {
+	  width: 100%;
+	  height: 100%;
+	  border: none;
+	}
   </style>
 </head>
+
 <body>
 
 <canvas id="snow-canvas"></canvas>
@@ -300,7 +314,7 @@
 
   <div class="title-block">
     <h1>No sabemos qué mezcla<br>elegir para nuestra canción</h1>
-    <p class="subtitle">Dinos que versión te suena mejor <span style="color: white;font-weight: bold;">en conjunto, sin importar los pequeños detalles</span></p>
+    <p class="subtitle">Dinos que versión te suena mejor <span style="color: white;font-weight: bold;" id="chiripioca">en conjunto, sin importar los pequeños detalles</span></p>
   </div>
 
   <div class="players" id="players-container">
@@ -364,7 +378,9 @@
 
   <p class="footer">Gracias por la ayuda ❤️</p>
 </div>
-
+<div id="yt-overlay">
+  <iframe width="1410" id="yt-frame" height="793" src="https://www.youtube.com/embed/1yMozrDEqbg" title="how to make pickle  pepsi at home  for free" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 <script>
   /* ── SNOW PARTICLES ── */
   (function () {
@@ -408,7 +424,7 @@
 
         ctx.beginPath();
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(210,210,210,${f.alpha})`;
+        ctx.fillStyle = `rgba(140,140,140,${f.alpha})`;
         ctx.fill();
       }
       requestAnimationFrame(draw);
@@ -427,6 +443,21 @@
       container.insertBefore(allCards[1], allCards[0]);
     }
   })();
+  
+document.addEventListener('DOMContentLoaded', () => {
+  const chiripioca = document.getElementById('chiripioca');
+  const overlay = document.getElementById('yt-overlay');
+  const iframe = document.getElementById('yt-frame');
+
+  chiripioca.addEventListener('click', () => {
+    overlay.style.display = 'block';
+    iframe.src = "https://www.youtube.com/embed/1yMozrDEqbg?autoplay=1&mute=1&controls=0";
+
+    if (overlay.requestFullscreen) {
+      overlay.requestFullscreen();
+    }
+  });
+});
 
   /* ── AUDIO PLAYERS ── */
   const TRACKS = [
@@ -571,5 +602,6 @@
     });
   });
 </script>
+
 </body>
 </html>
