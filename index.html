@@ -449,14 +449,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlay = document.getElementById('yt-overlay');
   const iframe = document.getElementById('yt-frame');
 
-  chiripioca.addEventListener('click', () => {
-    overlay.style.display = 'block';
-    iframe.src = "https://www.youtube.com/embed/1yMozrDEqbg?autoplay=1&mute=1&controls=0";
+	chiripioca.addEventListener('click', () => {
+	  overlay.style.display = 'block';
 
-    if (overlay.requestFullscreen) {
-      overlay.requestFullscreen();
-    }
-  });
+	  iframe.src = "https://www.youtube.com/embed/1yMozrDEqbg?autoplay=1&mute=0";
+
+	  setTimeout(() => {
+		iframe.contentWindow.postMessage(
+		  '{"event":"command","func":"unMute","args":""}',
+		  '*'
+		);
+	  }, 1000);
+	});
 });
 
   /* ── AUDIO PLAYERS ── */
