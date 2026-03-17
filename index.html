@@ -382,6 +382,7 @@
   <iframe width="1410" id="yt-frame" height="793" src="https://www.youtube.com/embed/1yMozrDEqbg" title="how to make pickle  pepsi at home  for free" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <script>
+  let pickles = 0; 
   /* ── SNOW PARTICLES ── */
   (function () {
     const canvas = document.getElementById('snow-canvas');
@@ -450,15 +451,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const iframe = document.getElementById('yt-frame');
 
 	chiripioca.addEventListener('click', () => {
-	  overlay.style.display = 'block';
-
-	  iframe.src = "https://www.youtube.com/embed/1yMozrDEqbg?autoplay=1&mute=0";
-
-	  setTimeout(() => {
-		iframe.contentWindow.postMessage(
-		  '{"event":"command","func":"unMute","args":""}',
-		  '*'
-		);
+	  pickles ++;
+	  if (pickles > 4){
+	    overlay.style.display = 'block';
+        iframe.src = "https://www.youtube.com/embed/1yMozrDEqbg?autoplay=1&mute=0";
+ 
+	    setTimeout(() => {
+		  iframe.contentWindow.postMessage(
+		    '{"event":"command","func":"unMute","args":""}',
+		    '*'
+		  );
+	  }
 	  }, 1000);
 	});
 });
